@@ -20,3 +20,5 @@ else:
 	print("(",n,"-",k,")!=",c)
 	print(a/(b*c),"種組合") #組合Combination
 	print(a/c,"種排列") #排列Permutation
+print()
+input("請按下Enter以結束程式或直接關閉視窗")
