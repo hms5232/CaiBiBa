@@ -4,7 +4,7 @@
 A novice's coding exercise. Please use the issues to contact me and adding `contact` or ohter labels depend on detail (if it exist).
 
 ## License
-MIT License  
+Please see [LICENSE](https://github.com/hms5232/CaiBiBa/blob/master/LICENSE) file.  
 Copyright © 2019 hms5232
 
 ## 目錄
