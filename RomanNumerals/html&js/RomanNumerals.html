@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>羅馬數字</title>
+	<meta charset="utf-8">
+	<meta name="author" content="hms5232">
+</head>
+
+<body>
+	<script type="text/javascript">
+		function switchNum(){
+			let getInput = document.getElementById("inputNum").value.toUpperCase();  // 取值時順便通通轉換成大寫；小寫是Lower
+			var numerals = [];
+			var result = 0;  // answer
+			let length = getInput.length;
+			// 先看使用者有沒有輸入非羅馬數字的東西
+			for(let i=0; i<=getInput.length-1; i++){
+				let tmp = checkInput(getInput.substr(i, 1));
+				if(tmp == -1){
+					alert("「"+getInput.substr(i, 1)+"」不是正確的羅馬數字");
+					continue;
+				}
+				numerals[i] = tmp;
+			}
+			// 再來確定有沒有連續四個數碼都長一樣
+			if(checkRestriction(numerals)){
+				alert("不可連續四個數碼");
+			}
+			// 開始計算
+			for(let j=0; j<=length-1; j++){
+				if(j == 0){
+					result += numerals[j];
+					continue;
+				}
+				if(numerals[j] > numerals[j-1]){  // 左邊的數字比較小要相減
+					numerals[j-1] *= -2;  // 把原本加上去的也扣掉
+					result += (numerals[j] + numerals[j-1]);
+				} else {
+					result += numerals[j];
+				}
+			}
+			alert(result);  // 跳出結果
+		}
+
+		// 檢查輸入的羅馬數字
+		function checkInput(word){
+			switch(word){
+				case 'I':
+					return 1;
+				case 'V':
+					return 5;
+				case 'X':
+					return 10;
+				case 'L':
+					return 50;
+				case 'C':
+					return 100;
+				case 'D':
+					return 500
+				case 'M':
+					return 1000;
+				default:
+					return -1;
+			}
+		}
+
+		// 不能連續四個數碼在一起
+		function checkRestriction(numerals){
+			for(let j=2; j<=numerals.length; j++){
+				/*
+					XXXX
+					  ↑
+					檢查前面兩個和後面一個數碼是否和現在指向的數碼相同
+				*/
+				if(numerals[j] == numerals[j-2] && numerals[j] == numerals[j-1] && numerals[j] == numerals[j+1]){
+					return 1;
+				}
+			}
+			return 0;
+		}
+	</script>
+	<table border="5">
+		<tr>
+			<td colspan="2" align="center">羅馬數字對照表</td>
+		</tr>
+		<tr>
+			<td>
+				阿拉伯數字
+			</td>
+			<td>
+				羅馬數字
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1
+			</td>
+			<td>
+				I
+			</td>
+		</tr>
+		<tr>
+			<td>
+				5
+			</td>
+			<td>
+				V
+			</td>
+		</tr>
+		<tr>
+			<td>
+				10
+			</td>
+			<td>
+				X
+			</td>
+		</tr>
+		<tr>
+			<td>
+				50
+			</td>
+			<td>
+				L
+			</td>
+		</tr>
+		<tr>
+			<td>
+				100
+			</td>
+			<td>
+				C
+			</td>
+		</tr>
+		<tr>
+			<td>
+				500
+			</td>
+			<td>
+				D
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1000
+			</td>
+			<td>
+				M
+			</td>
+		</tr>
+	</table>
+	請輸入：<input type="text" id="inputNum"><button type="button" onclick="switchNum()">轉換成阿拉伯數字</button><button type="button" onclick="">轉換成羅馬數字</button>
+</body>
+</html>
