@@ -18,13 +18,14 @@
 				let tmp = checkInput(getInput.substr(i, 1));
 				if(tmp == -1){
 					alert("「"+getInput.substr(i, 1)+"」不是正確的羅馬數字");
-					continue;
+					return;
 				}
 				numerals[i] = tmp;
 			}
 			// 再來確定有沒有連續四個數碼都長一樣
 			if(checkRestriction(numerals)){
 				alert("不可連續四個數碼");
+				return;  // 中斷函數
 			}
 			// 開始計算
 			for(let j=0; j<=length-1; j++){
@@ -33,8 +34,14 @@
 					continue;
 				}
 				if(numerals[j] > numerals[j-1]){  // 左邊的數字比較小要相減
-					numerals[j-1] *= -2;  // 把原本加上去的也扣掉
-					result += (numerals[j] + numerals[j-1]);
+					// 左減的數字有限制，僅限於I、X、C
+					if(numerals[j-1]==1 || numerals[j-1]==10 || numerals[j-1]==100){
+						numerals[j-1] *= -2;  // 把原本加上去的也扣掉
+						result += (numerals[j] + numerals[j-1]);
+					}else{
+						alert("左減的數字有限制，僅限於I、X、C");
+						return;
+					}
 				} else {
 					result += numerals[j];
 				}
@@ -73,6 +80,9 @@
 					檢查前面兩個和後面一個數碼是否和現在指向的數碼相同
 				*/
 				if(numerals[j] == numerals[j-2] && numerals[j] == numerals[j-1] && numerals[j] == numerals[j+1]){
+					if(numerals[j] == 1){  // 唯一的例外IIII
+						continue;
+					}
 					return 1;
 				}
 			}
