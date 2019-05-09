@@ -10,33 +10,32 @@
 	<script type="text/javascript">
 		function switchNum(){
 			let getInput = document.getElementById("inputNum").value.toUpperCase();  // 取值時順便通通轉換成大寫；小寫是Lower
-			var numerals = [];
+			let numerals = [];
 			var result = 0;  // answer
-			let length = getInput.length;
-			// 先看使用者有沒有輸入非羅馬數字的東西
+			// 開始逐一處理使用者輸入的數碼
 			for(let i=0; i<=getInput.length-1; i++){
-				let tmp = checkInput(getInput.substr(i, 1));
-				if(tmp == -1){
+				let tmp = checkInput(getInput.substr(i, 1));  // 先看使用者有沒有輸入非羅馬數字的東西
+				if(tmp == -1){  // 『ブッブーですわ!』
 					alert("「"+getInput.substr(i, 1)+"」不是正確的羅馬數字");
 					return;
 				}
-				numerals[i] = tmp;
+				numerals[i] = tmp;  // 要放進去囉>///<
 			}
 			// 再來確定有沒有連續四個數碼都長一樣
 			if(checkRestriction(numerals)){
 				alert("不可連續四個數碼");
-				return;  // 中斷函數
+				return;  // あのねあのね~通行止め！╮>,<
 			}
 			// 開始計算
-			for(let j=0; j<=length-1; j++){
-				if(j == 0){
+			for(let j=0; j<=getInput.length-1; j++){
+				if(j == 0){ // 「排頭伍為準──~~~」
 					result += numerals[j];
 					continue;
 				}
 				if(numerals[j] > numerals[j-1]){  // 左邊的數字比較小要相減
 					// 左減的數字有限制，僅限於I、X、C
 					if(numerals[j-1]==1 || numerals[j-1]==10 || numerals[j-1]==100){
-						numerals[j-1] *= -2;  // 把原本加上去的也扣掉
+						numerals[j-1] *= -2;  // 把原本加上去的也扣掉（加倍奉還）
 						result += (numerals[j] + numerals[j-1]);
 					}else{
 						alert("左減的數字有限制，僅限於I、X、C");
@@ -49,7 +48,7 @@
 			alert(result);  // 跳出結果
 		}
 
-		// 檢查輸入的羅馬數字
+		// 檢查輸入的羅馬數字順便轉換成對應的阿拉伯數字
 		function checkInput(word){
 			switch(word){
 				case 'I':
@@ -67,6 +66,7 @@
 				case 'M':
 					return 1000;
 				default:
+					// 『好像有奇怪的東西混進來了』
 					return -1;
 			}
 		}
