@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>羅馬數字</title>
+	<title>羅馬數字轉換機</title>
 	<meta charset="utf-8">
 	<meta name="author" content="hms5232">
+	<link rel=stylesheet tyep="text/css" href="RomanNumerals.css">
 </head>
 
 <body>
@@ -90,10 +91,10 @@
 		}
 	</script>
 	<table border="5">
-		<tr>
+		<tr class="table_name">
 			<td colspan="2" align="center">羅馬數字對照表</td>
 		</tr>
-		<tr>
+		<tr class="table_title">
 			<td>
 				阿拉伯數字
 			</td>
@@ -158,6 +159,8 @@
 			</td>
 		</tr>
 	</table>
-	請輸入：<input type="text" id="inputNum"><button type="button" onclick="switchNum()">轉換成阿拉伯數字</button><button type="button" onclick="">轉換成羅馬數字</button>
+	<div id="input-area">
+		請輸入：<input type="text" id="inputNum"><button type="button" onclick="switchNum()">轉換成阿拉伯數字</button><button type="button" onclick="">轉換成羅馬數字</button>
+	</div>
 </body>
 </html>

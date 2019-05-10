@@ -1,0 +1,36 @@
+*{
+	font-family: Microsoft JhengHei,fantasy,DFKai-sb;
+	/*margin: 0 auto;*/
+}
+
+table{
+	border-collapse: collapse;
+	margin: 15px;
+	border: solid #9999FF;
+}
+
+td{
+	padding: 15px;
+}
+
+th, td{
+	border: 2px groove #BB5500 ;
+}
+
+.table_title{
+	background-color: #00DD77;
+	/*text-align: center;*/
+}
+
+.table_name{
+	background-color: #99FF99;
+	color: #7744FF ;
+	font-weight: bolder;
+	font-size: 28px;
+	border: ridge #B088FF;
+	border-bottom: dashed #66FFFF;
+}
+
+#input-area{
+	padding:40px;
+}
