@@ -38,6 +38,28 @@ def checkRestriction(numerals):
 	return 0;
 
 
+# 最後，當然就是加起來囉（不過還要檢查左減的數碼）
+def compute(numerals):
+	result = 0  # ※羅馬數字中是沒有0的喔
+	for l in range(len(numerals)):
+		if(l == 0):
+			result += numerals[l]
+			continue
+		if(numerals[l] > numerals[l-1]):  # 左邊的數字比較小就減掉
+			# 左減的數字有限制，僅限於I、X、C
+			if(numerals[l-1]==1 or numerals[l-1]==10 or numerals[l-1]==100):
+				numerals[l-1] *= -2  # 加倍奉還（把原本加上去的扣回來）
+				result += (numerals[l] + numerals[l-1])
+			else:
+				print("左減的數字有限制，僅限於I、X、C")
+				exit(0)
+		else:  # 右邊的數字比較小就相加
+			result += numerals[l]
+	return result
+
+
+# == 以下 main ==
+
 ronum = input("請輸入：")
 # python 沒有陣列(Array)但有列表(list)
 nums = list(ronum.upper())  # 將使用者輸入的東西逐一放進list
@@ -57,7 +79,6 @@ if(checkRestriction(numerals)):
 	print("不能連續四個一樣的數碼")
 	exit(0)
 
-# さあ、ゲームを始めよう
-for i in range(len(numerals)):
-	print(numerals[i])
+# 『さあ、ゲームを始めよう』
+print("結果：",compute(numerals))
 input()
