@@ -21,7 +21,7 @@ def row_calculate(n):
 		
 
 def main():
-	user_input = int(input())  # 輸入要幾行/列（因為會長成正方形，所以輸入的數字既是行也是列）
+	user_input = int(input())  # 輸入要幾行/列
 	all_list = [[0] * user_input for i in range(user_input)]  # 整體
 	all_list[0][0] = 1  # 起始值
 
@@ -47,8 +47,14 @@ def main():
 			m += 1
 	print(all_list)
 	
+	# 最後算出每一行的總和
 	column_sum_list = []  # 每一行的和
-	# TODO: 最後算出每一行的總和
+	for o in range(user_input):  # column
+		column_sum = 0  # 該行總和
+		for p in range(user_input):  # row
+			column_sum += all_list[p][o]  # 找出o行p列的數字
+		column_sum_list.append(column_sum)
+	print('------------ SUM ------------\n', column_sum_list)
 
 
 if __name__ == '__main__':
