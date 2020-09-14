@@ -10,6 +10,7 @@ A novice's coding exercise. Please use the issues to contact me and adding `cont
 + MutationMultiplicationTable：變種九九乘法表
 +	CreditCardForeignTradeCalculation：信用卡國外交易手續費和回饋計算小程式
 + RomanNumerals：羅馬數字轉換機
++ StockFee：股票交易手續費計算
 
 ## License
 Please see [LICENSE](https://github.com/hms5232/CaiBiBa/blob/master/LICENSE) file.  
